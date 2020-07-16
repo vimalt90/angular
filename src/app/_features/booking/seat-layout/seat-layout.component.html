@@ -1,0 +1,157 @@
+<div class="row ml-3 mt-2">
+  <div class="col">
+    <div class="card">
+      <img src="{{ posterUrl }}" style="height: 150px;" />
+    </div>
+    <div class="row ml-3">
+      <span class="text-white flex-grow-1 d-flex flex-wrap">
+        {{ movieName }}
+      </span>
+    </div>
+    <div class="row ml-3">
+      <span class="text-center text-white flex-grow-1 d-flex flex-wrap">
+        {{ selectedDate }}
+      </span>
+    </div>
+  </div>
+  <div class="col-11">
+    <ng-container
+      *ngIf="showTimeService.movieShowDates | async as movieShowDates"
+    >
+      <div class="row p-3 ml-3">
+        <div
+          class="text-center p-3 mr-5 moviedate"
+          *ngFor="let show of movieShowDates; index as i"
+          (click)="getMovieShowTimes(show.showDate)"
+        >
+          <div>{{ show.showDate | date: "dd" }}</div>
+          <div>{{ show.day }}</div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showTimeService.venues | async as venues">
+      <div class="col flex-md-nowrap mt-5">
+        <div
+          class="d-flex flex-md-nowrap venuecnt mt-5 p-3"
+          *ngFor="let venue of venues"
+        >
+          <span
+            class="text-center p-3 mr-5 ml-3 d-flex font-weight-bold"
+            style="width: 25%;"
+          >
+            {{ venue.venueName }}
+          </span>
+          <span
+            class="text-center p-1 mr-5 ml-3 flex-grow-1 d-flex flex-wrap"
+            *ngFor="let show of venue.shows"
+          >
+            <span class="mx-2 p-3" (click)="onShowTimeSelection(show)">{{
+              show.showTime
+            }}</span>
+          </span>
+        </div>
+        <!-- </div> -->
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- movie traiekr screen -->
+<div class="video">
+  <iframe
+    height="345"
+    width="100%"
+    [src]="movieTrailerUrl"
+    style="border: none;"
+  >
+  </iframe>
+</div>
+<!-- seat layout screen -->
+
+<div class="container seatcontainer">
+  <div class="row justify-content-center">
+    <div class="col-11">
+      <table>
+        <tbody>
+          <ng-container *ngFor="let class of seatLayout?.classes">
+            <tr>
+              <td colspan="2" style="text-align: left; padding-top: 15px;">
+                <label>{{ class.className }}</label>
+              </td>
+            </tr>
+
+            <ng-container *ngFor="let row of class.labels">
+              <tr>
+                <td>
+                  <div>
+                    <label>{{
+                      row.groupId != "DUMMY" ? row.groupId : ""
+                    }}</label>
+                  </div>
+                </td>
+                <td>
+                  <ng-container *ngFor="let seat of row.seats; index as i">
+                    <div
+                      *ngIf="
+                        (seat.bookingStatus == 'AVAILABLE' &&
+                          seat.seatNumber) ||
+                        (seat.bookingStatus == 'NEW_BY_CANCEL' &&
+                          seat.seatNumber)
+                      "
+                      class="seat"
+                      [ngClass]="
+                        seat.selectedstatus_ui == 0 ||
+                        seat.selectedstatus_ui == '' ||
+                        seat.selectedstatus_ui == null
+                          ? 'seatAvailbg'
+                          : 'seatBlockedbg'
+                      "
+                      (click)="selectSeat(row.seats, class, i)"
+                    >
+                      <label class="available">{{ seat.seatNumber }}</label>
+                    </div>
+                    <div
+                      *ngIf="
+                        seat.bookingStatus == 'AVAILABLE' && !seat.seatNumber
+                      "
+                      class="seat"
+                      (click)="selectSeat(row.seats, class, i)"
+                    >
+                      <label class="available">{{ seat.seatNumber }}</label>
+                    </div>
+                    <div
+                      *ngIf="seat.bookingStatus == 'BOOKED'"
+                      class="seat seatbookedbg"
+                    >
+                      <label class="booked">{{ seat.seatNumber }}</label>
+                    </div>
+                    <div
+                      *ngIf="seat.bookingStatus == 'SOLDOUT'"
+                      class="seat seatSOLDOUTbg"
+                    >
+                      <label class="blocked">{{ seat.seatNumber }}</label>
+                    </div>
+                    <div
+                      *ngIf="seat.bookingStatus == 'BLOCKED'"
+                      class="seat seatBLOCKEDbg"
+                    >
+                      <label class="blocked">{{ seat.seatNumber }}</label>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="fixedproceed" *ngIf="showProceed">
+  <Button
+    class="button btn-lg proceedbtn"
+    *ngIf="seatselect"
+    (click)="proceed()"
+    >Proceed</Button
+  >
+</div>

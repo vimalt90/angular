@@ -1,0 +1,171 @@
+<div class="profile">
+  <form
+    role="form"
+    method="post"
+    accept-charset="UTF-8"
+    id="login-nav"
+    #f="ngForm"
+    noValidate
+    [formGroup]="profile"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="profile-border">
+      <h4>Personal details</h4>
+      <div class="form-row">
+        <div
+          class="form-group pmd-textfield pmd-textfield-outline pmd-textfield-floating-label col-md-6"
+        >
+          <label for="outline-form-layout-fn">First Name</label>
+          <input
+            type="text"
+            id="outline-form-layout-fn"
+            class="form-control"
+            formControlName="firstName"
+            placeholder="Firstname"
+            required
+          />
+        </div>
+        <div
+          class="form-group pmd-textfield pmd-textfield-outline pmd-textfield-floating-label col-md-6"
+        >
+          <label for="outline-form-layout-ln">Last Name</label>
+          <input
+            id="outline-form-layout-ln"
+            class="form-control"
+            type="text"
+            formControlName="lastName"
+            placeholder="Lastname"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="outline-form-layout-ln">Gender?</label><br />
+
+          <div class="custom-control custom-radio">
+            <input
+              id="male"
+              type="radio"
+              class="custom-control-input"
+              value="male"
+              name="gender"
+              formControlName="gender"
+              ngModel
+            />
+            <label class="custom-control-label" for="male">Male</label>
+          </div>
+
+          <div class="custom-control custom-radio">
+            <input
+              id="female"
+              type="radio"
+              class="custom-control-input"
+              value="female"
+              name="gender"
+              formControlName="gender"
+              ngModel
+            />
+            <label class="custom-control-label" for="female">Female</label>
+          </div>
+        </div>
+        <div
+          id="style"
+          class="form-group pmd-textfield pmd-textfield-outline pmd-textfield-floating-label col-md-6"
+        >
+          <label for="outline-form-layout-ln"
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date Of Birth</label
+          >
+          <input
+            class="form-control datepicker"
+            #datepickerFull="bsDatepicker"
+            bsDatepicker
+            formControlName="dateOfBirth"
+            [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }"
+            placeholder="DD-MMM-YYYY"
+            style="left: 20px; position: relative;"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="profile-border">
+      <h4>Contact details</h4>
+      <div class="row">
+        <div
+          class="form-group pmd-textfield pmd-textfield-outline pmd-textfield-floating-label col-md-6"
+        >
+          <label for="outline-form-layout-ln">PhoneNumber</label>
+          <input
+            id="outline-form-layout-ln"
+            class="form-control"
+            type="text"
+            digitOnly
+            formControlName="primaryPhoneNumber"
+            placeholder="PrimaryPhoneNumber"
+            maxlength="10"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              profile.controls['primaryPhoneNumber'].hasError('required') &&
+              (profile.controls['primaryPhoneNumber'].dirty ||
+                profile.controls['primaryPhoneNumber'].touched)
+            "
+            >This field is required</span
+          >
+          <span
+            class="text-danger"
+            *ngIf="
+              profile.controls['primaryPhoneNumber'].hasError('pattern') &&
+              (profile.controls['primaryPhoneNumber'].dirty ||
+                profile.controls['primaryPhoneNumber'].touched)
+            "
+            >Please enter valid phone number</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="form-group pmd-textfield pmd-textfield-outline pmd-textfield-floating-label"
+        [ngClass]="{
+          'has-danger':
+            primaryEmail.invalid &&
+            (primaryEmail.dirty || primaryEmail.touched),
+          'has-success':
+            primaryEmail.valid && (primaryEmail.dirty || primaryEmail.touched)
+        }"
+      >
+        <label for="outline-form-layout-email"> Email</label>
+        <input
+          type="email"
+          id="outline-form-layout-email"
+          class="form-control"
+          formControlName="primaryEmail"
+          placeholder="Email@gmail.com"
+          required
+          email
+          style="width: 60%;"
+        />
+        <div
+          class="form-control-feedback"
+          *ngIf="
+            primaryEmail.errors && (primaryEmail.dirty || primaryEmail.touched)
+          "
+        >
+          <p *ngIf="primaryEmail.errors.required">
+            Email is required
+          </p>
+          <p *ngIf="primaryEmail.errors.pattern">Invalid Email</p>
+        </div>
+      </div>
+      <div align="end">
+        <button
+          type="submit"
+          style="position: relative;"
+          [disabled]="!primaryPhoneNumber.valid"
+          class="btn pmd-ripple-effect btn-primary"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

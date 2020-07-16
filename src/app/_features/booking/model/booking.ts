@@ -1,0 +1,42 @@
+import { Genres } from "../../shows/model/movie";
+import { SelectedSeatLayout } from "./seat-layout";
+
+export class Booking {
+  customerEmail: string;
+  customerName: string;
+  customerPhone: number;
+  city: string;
+  movieId: number;
+  screenId: number;
+  venueId: number;
+  venueName: string;
+  movieName: string;
+  movieConsent: string;
+  venueConsent: string;
+  classId: number;
+  classPublishedId: number;
+  seat_layout: SelectedSeatLayout;
+  genres: Genres[];
+  orderId: string;
+  orderAmount: number;
+  bookingId: string;
+  trailerUrl: string;
+  posterUrl: string;
+  overAllRating: number;
+  language: string;
+  censorCertificate: string;
+  duration: string;
+  paymentMode: number;
+  companyId: number;
+  showPublishedId: number;
+  seatCount: number;
+  venueShowTermsFlag: string;
+  venueShowTermsFileId: number;
+  movieShowTermsFileId: number;
+  movieShowTermsFlag: string;
+  userId: string;
+  showTime: string;
+  showDate: string;
+  userPreferenceGenreId: number;
+  userPreferenceVenueId: number;
+}

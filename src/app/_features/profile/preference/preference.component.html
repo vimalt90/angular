@@ -1,0 +1,153 @@
+<div
+role="tabpanel"
+class="tab-pane active"
+id="home"
+>
+<div>
+ Preferred Venues
+ 
+
+  <div>
+
+   No prefered venue Available
+  </div>
+  <div class="help-block text-center" >
+    <!-- <div  *ngFor="let venue of venuescity.venues">  -->
+         <a
+    (click)="getCity(ADDVenue)"
+      style="
+                    position: relative;
+                    bottom: 32px;;"
+      >
+      ADD
+      </a>
+    <ng-template #ADDVenue>
+      <div>
+        <i
+          class="fa fa-close headerClose"
+          style="    font-size: 24px;
+                            position: relative;
+                            left: 325px;
+                            top: 35px;
+                            z-index: 1;"
+        ></i>
+
+      </div>
+      <div
+        class="modal-body login-modal"
+        style="background: white;
+                                       position: relative;  max-width: 410px;    text-align: justify;"
+      >
+        <h4 align="center">
+          Select Venue
+        </h4>
+        <div *ngIf="venueService.venuescity | async as venuescity ">
+          <div *ngFor="let venue of venuescity.venues"  style="cursor: pointer;position: relative;
+          left: 50px;">
+          <input
+            type="checkbox"
+            class="venueList"
+            style="position: relative;
+                                right: 258px;
+                                top: 20px;"
+                                 (click)="addvenues(venue.venueId)"
+
+          />
+
+          &nbsp;&nbsp;&nbsp;{{venue.venueName}}
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </ng-template>
+  <!-- </div> -->
+
+  </div>
+</div>
+<table style="border: 1px solid #999999; width:646px; ">
+            <div *ngIf="preference.venueses | async as venueses">
+            <div *ngFor="let venue of venueses ; let i = index">
+                <tr>
+                  <td colspan="2"></td>
+                  <td style="width:300px;padding:15px;">
+                    {{ venueses.venueName }}
+                  </td>
+                  <td>
+                    <i
+                    class="fa fa-times"
+                    aria-hidden="true"
+                    style="display:inline-block;margin:0px 250px;     left: 110px;
+                                        position: relative;"
+                                         (click)="
+                                         removeVenuePopup(
+                                          venue.venueId,
+                                           i,
+                                           CancelVenue
+                                         )
+                                       "
+                  ></i>
+                </td>
+              </tr>
+          </div>
+          </div>
+
+  <ng-template #CancelVenue>
+    <div>
+      <div
+        class="modal-body login-modal"
+        style="background: white;
+                                max-width: 550px; text-align: center;"
+                                (click)="
+                                confirmDelete();">
+        <h6 align="center">
+          demo.Are you sure you want to remove preference?
+        </h6>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="display:inline-block;margin:0px 5px;position: relative;right: 12px;"
+          let
+          i="index;"
+        >
+          Yes
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</table>
+
+<div class="profile-border">
+
+
+ Preferred Genres
+  <ul style="column-count: 2;">
+    <div class="">
+      <div *ngIf="preference.genre | async as genre">
+        <div *ngFor="let genre of genre.genres">
+          <span style="position: relative; left: 30px;">
+            {{genre.genreName}}
+            </span>
+        <input
+          type="checkbox"
+          class="genreList" (change)="userSelectedGenre($event, genre.genreId)"
+        />
+      </div>
+      </div>
+    </div>
+  </ul>
+
+  <button
+    type="submit"
+    style="position:relative;width: 100px;    left: 469px;"
+    class="btn btn-primary btn-block" (Click) = "fetchGenre()"
+  >
+      Submit
+  </button>
+</div>
+</div>

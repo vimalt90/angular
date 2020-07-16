@@ -1,0 +1,92 @@
+.reducedwidth {
+    width: 18px;
+  }
+  
+  .checkbox {
+    width: 100px;
+  }
+
+  table {
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  th,
+  td {
+    padding: 0;
+  }
+
+  //////errormsg css styles//
+  p {
+    font-family: Lato;
+  }
+  .error-message {
+    color: red;
+  }
+  input.ng-touched.ng-invalid {
+    border: 1px solid red;
+  }
+  
+  .genreList {
+    position: relative;
+    bottom: 20px;
+    left: 100px;
+  }
+  .venue {
+    position: relative;
+    right: 115px;
+  }
+  
+  .addvenue {
+    position: relative;
+    right: 120px;
+  }
+  .cancelvenue {
+    position: relative;
+    width: 100px;
+    right: 170px;
+    top: 40px;
+  }
+  
+  .cancel-button {
+    background-color: #f3092a;
+    border: none;
+    color: white;
+    padding: 3px 15px;
+    margin-bottom: 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .print-tickets {
+    background-color: #49a4ff;
+    border: none;
+    color: white;
+    padding: 3px 15px;
+    margin-bottom: 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  ///
+  .left {
+    left: 0;
+    position: absolute;
+    font-size: 10px;
+    color: floralwhite;
+    font-style: italic;
+    bottom: -15px;
+  }
+  #style {
+    position: relative;
+    left: 217px;
+  }
+  .profile-border {
+    border: 1px solid #999999;
+    width: 650px;
+    height: 280px;
+    position: relative;
+    padding: 10px 20px;
+    top: 20px;
+  }
+  

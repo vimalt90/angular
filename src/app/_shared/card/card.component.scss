@@ -1,0 +1,38 @@
+.roundedImg {
+  height: 315px;
+  width: 100%;
+}
+
+.cardoverlay {
+  position: relative;
+
+  &:before {
+    content: "";
+    top: 0;
+    left: 0;
+    height: 315px;
+    width: 100%;
+    position: absolute;
+    background: rgba(66, 70, 87, 0.2);
+  }
+}
+
+.card {
+  --duration: 2.5s;
+  border: none;
+  background: rgba(66, 70, 87, 0.26);
+  animation: fadeInUp;
+  animation-duration: var(--duration);
+  //animation-delay: 1s;
+}
+
+.cardbodycnt {
+  background: rgba(37, 39, 52, 0.17);
+  border-radius: 10px;
+}
+
+.ratingcnt {
+  position: absolute;
+  top: 0px;
+  right: 0;
+}

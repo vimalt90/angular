@@ -1,0 +1,104 @@
+<mp-header></mp-header>
+<div class="jumbotron jumbotron-fluid position-relative">
+  <div class="hero-overlay"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
+        <div class="card p-2 mx-5">
+          <picture class="m-3 cardoverlay">
+            <img
+              class="card-img-top roundedImg"
+              src="{{ movie.posterUrl }}"
+              alt="Card image"
+            />
+          </picture>
+          <div class="card-body cardbodycnt pt-1 pr-3 pl-3 pb-1 mr-3 ml-3 mb-3">
+            <div class="card-title position-relative">
+              <div class="text-white">{{ movie.movieName }}</div>
+              <div class="small text-white-50">{{ movie.language }}</div>
+              <div class="ratingcnt"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col offset-3 mr-5 detailscnt"
+        id="main"
+        style="background: rgba(0, 0, 0, 0.25);"
+      >
+        <h1>{{ movie.movieName }}</h1>
+        <div class="row">
+          <div class="col-6">
+            <h6>Description</h6>
+            <h6>
+              {{ movie.synopsis }}
+            </h6>
+          </div>
+          <div class="col-6">
+            Rating here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mr-5">
+  <div class="col-3"></div>
+  <div class="col">
+    <ng-container
+      *ngIf="showsTimeService.movieShowDates | async as movieShowDates"
+    >
+      <div class="row p-3 ml-3">
+        <div
+          class="text-center p-3 mr-5 moviedate"
+          *ngFor="let show of movieShowDates; index as i"
+          (click)="getMovieShowTimes(show.showDate)"
+        >
+          <div>{{ show.showDate | date: "dd" }}</div>
+          <div>{{ show.day }}</div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showsTimeService.venues | async as venues">
+      <div class="col flex-md-nowrap mt-5">
+        <div
+          class="d-flex flex-md-nowrap venuecnt mt-5 p-3"
+          *ngFor="let venue of venues"
+        >
+          <span
+            class="text-center p-3 mr-5 ml-3 d-flex font-weight-bold"
+            style="width: 25%;"
+            (click)="onVenueSelect(venue.venueId, venue.venueName)"
+          >
+            {{ venue.venueName }}
+          </span>
+          <span
+            class="text-center p-1 mr-5 ml-3 flex-grow-1 d-flex flex-wrap"
+            *ngFor="let show of venue.shows"
+          >
+            <span
+              class="mx-2 p-3"
+              (click)="
+                openSeatCountModal(
+                  selectSeatCount,
+                  venue.venueId,
+                  venue.venueName,
+                  venue.companyId,
+                  show.showPublishedId,
+                  show.screenId,
+                  show.showTime
+                )
+              "
+              >{{ show.showTime }}</span
+            >
+          </span>
+        </div>
+        <!-- </div> -->
+      </div>
+    </ng-container>
+  </div>
+</div>
+<ng-template #selectSeatCount>
+  <mp-seatcount></mp-seatcount>
+</ng-template>
+<mp-footer></mp-footer>

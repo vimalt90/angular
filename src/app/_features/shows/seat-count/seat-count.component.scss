@@ -1,0 +1,60 @@
+/* choose seats */
+.seat-select-modal {
+    background-image: url("https://dcstatic.com/images/brandcrowd/background/modal-background-cbc6d6c243.svg");
+    background-size: contain;
+    background-color: #0a0a0a4f;
+    .modal-header {
+      background: transparent;
+      border-bottom: 1px dotted #868686;
+    }
+    .modal-footer {
+      border-top: 1px dotted #868686;
+    }
+    .seat {
+      ul {
+        padding: 0;
+        li {
+          width: 9%;
+          margin: 0 0.5%;
+          float: left;
+          padding: 5px 10px;
+          cursor: pointer;
+          text-align: center;
+          color: #000;
+          list-style: none;
+          border-radius: 5px;
+        }
+        li:hover,
+        .highlight {
+          background: #1abc9c;
+          color: #fff;
+          border-radius: 5px;
+          font-weight: bold;
+        }
+      }
+    }
+    .modal-footer {
+      display: block;
+      .action-area {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        //height: 135px;
+      }
+      .tc-link {
+        color: #758296;
+      }
+      .btn:first-child {
+        margin-right: 0.25rem;
+      }
+      .tnc {
+        margin-top: 25px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 325px;
+        min-height: 325px;
+        overflow: hidden;
+      }
+    }
+  }
+  

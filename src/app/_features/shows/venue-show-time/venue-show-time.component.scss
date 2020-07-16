@@ -1,0 +1,83 @@
+.jumbotron {
+  background-image: url("https://i.ibb.co/z5MY5qz/oblivion-tom-cruise-2-cropped.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+  margin-top: 80px;
+  animation: fadeIn;
+  animation-duration: 3s;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.roundedImg {
+  height: 315px;
+  width: 100%;
+}
+
+.cardoverlay {
+  position: relative;
+
+  &:before {
+    content: "";
+    top: 0;
+    left: 0;
+    height: 315px;
+    width: 100%;
+    position: absolute;
+    background: rgba(66, 70, 87, 0.2);
+  }
+}
+
+.card {
+  --duration: 2.8s;
+  border: none;
+  background: rgba(66, 70, 87, 0.26);
+  animation: fadeInUp;
+  animation-duration: var(--duration);
+  //animation-delay: 1s;
+}
+
+.cardbodycnt {
+  background: rgba(37, 39, 52, 0.17);
+  border-radius: 10px;
+}
+
+.ratingcnt {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  height: 55px;
+  width: 50px;
+}
+
+.detailscnt {
+  animation: fadeInRight;
+  animation-duration: 2.5s;
+}
+
+.moviedate {
+  box-shadow: 1px 1px 10px #00000059;
+
+  background-color: #a40606;
+  /* background-image: linear-gradient(315deg, #a4060647 40%, #d98324cc 74%); */
+  background-color: #fc9842;
+  background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+}
+
+.venuecnt {
+  background: linear-gradient(180deg, #2f323b, #383c47);
+  box-shadow: 38px 38px 76px #15161a3d, -38px -38px 76px #20252f54;
+  border-bottom: 1px solid transparent;
+}
+
+.venuecnt:hover {
+  -o-border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
+  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
+}

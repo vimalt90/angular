@@ -1,0 +1,19 @@
+<main role="main">
+  <div style="margin-top: 80px;">
+    <div class="row">
+      <div class="carousel-container">
+        <div class="carousel-overlay">
+          <ngx-slick-carousel
+            class="carousel"
+            #slickModal="slick-carousel"
+            [config]="slideConfig"
+          >
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img src="{{ slide.img }}" alt="" />
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

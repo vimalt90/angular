@@ -1,0 +1,47 @@
+<!-- <div *ngIf="userReview.userreview | async as userreview"> -->
+<div class="modal-header">
+    <div style="text-align: center;">
+        How was the movie? <br />
+        <section id="like" class="rating">
+            <input type="radio" id="heart_5" name="like" />
+            <label for="heart_5" title="Five" (click)="onClick(100)">&#10084;</label>
+            <input type="radio" id="heart_4" name="like" />
+            <label for="heart_4" title="Four" (click)="onClick(80)">&#10084;</label>
+            <input type="radio" id="heart_3" name="like" />
+            <label for="heart_3" title="Three" (click)="onClick(60)">&#10084;</label>
+            <input type="radio" id="heart_2" name="like" />
+            <label for="heart_2" title="Two" (click)="onClick(40)">&#10084;</label>
+            <input type="radio" id="heart_1" name="like" />
+            <label for="heart_1" title="One" (click)="onClick(20)">&#10084;</label>
+        </section>
+        <div>Movie Name:{{ showService.booking.movieName }}</div>
+        <br />
+        <textarea [(ngModel)]="titleComment" cols="100" maxlength="20" placeholder="Title: One liner">
+      </textarea><br>
+        <textarea [(ngModel)]="commentValue" rows="4" cols="100" maxlength="500" placeholder="Description...">
+    </textarea><br>
+        <div style="text-align: right">
+            <span> {{ 500 - commentValue.length }} characters left </span>
+        </div><br>
+
+        <button style="margin-right: 30px;" (click)="userReviewComments(showService.booking.movieId,successReview)">
+            submit
+        </button>
+
+        <button (click)="closeUserReviewModal()">Cancel</button>
+    </div>
+</div>
+
+<!-- </div> -->
+<div>
+    <ng-template #successReview>
+        <div class="modal-header">
+            <div style="text-align: center;">
+                <div>User Reviews Added Successfully</div>
+                <button style="margin-right: 30px;" (click)="closeUserReviewModal()">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</div>

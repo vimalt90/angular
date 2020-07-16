@@ -1,0 +1,225 @@
+<div class="modal-body login-modal" style=" width: 800px;background: currentColor; position: relative;right: 160px">
+<div id="logreg-forms">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <!-- The image half -->
+      <div class="col-md-6 d-none d-md-flex" style="position:relative;justify-content: center;align-items: center;">
+        <div class="bg-image"
+          style="position:absolute;top:0;height:100%;width:100%;animation: moveSlideshow 10s infinite;"></div>
+        <img src="assets/images/panda.png" style="
+      height: 80px;
+      width: 80px;
+      margin: 0 15px;z-index:10;
+      " />
+      </div>
+      <!-- The content half -->
+      <div class="col-md-6 bg-light">
+        <div class="login d-flex align-items-center py-5">
+          <!-- Demo content-->
+          <div class="container">
+            <span id="headerchange"> {{header}} </span>
+            <div class="row">                
+                <div style="position: relative;
+                left: 347px;
+                bottom: 85px;" id="logreg-forms">
+                  <button type="button" class="close" aria-label="Close" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                 </button>
+                </div>
+              <div class="col">
+                <!-- login old style page content -->
+                <!-- login via -->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div *ngIf="!passwordOtp">
+                      <div *ngIf="!switchtoForgotPassword">
+                    <div class="social-buttons">
+                      <a href="#" class="btn btn-fb" (click)="signInWithFB()">
+                        <i class="fab fa-facebook"></i>
+                       Facebook </a>
+                      <a href="#" class="btn btn-goo" (click)="signInWithGoogle()">
+                        <i class="fab fa-google"></i>
+                        Google
+                      </a>
+                    </div>
+                    <div class="bottom text-center margin15" *ngIf="!swithtoRegister">
+                      <span>New Here</span>
+                        <a (click)="loginorRegisterTitle('register')">
+                          <b class="space" style="color:currentColor;"> joinus </b>
+                        </a>
+                    </div>
+                      </div>
+                    <div class="bottom text-center margin15" *ngIf="swithtoRegister">
+                      <span>
+                        alreadyhaveanaccount</span>
+                      <a (click)="loginorRegisterTitle('login')">
+                        <b class="space">login</b>
+                      </a>
+                    </div>
+                    <form class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav" noValidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group mb-3">
+                        <div *ngIf="!switchtoForgotPassword">
+                          <input id="inputEmail" #userOption type="email" formControlName="email"
+                            placeholder="Email/Phone Number" (keyup)="
+                              displayPassword(userOption.value, $event)
+                            " (keydown)="errorMessage()" autofocus=""
+                            class="form-control rounded-pill border-0 shadow-sm px-8" />
+                        </div>
+                      </div>
+                    </form>
+                    <form class="form" role="form" method="post" accept-charset="UTF-8" id="password-nav" noValidate [formGroup]="passwordForm"
+                    (ngSubmit)="onSubmit()">
+                      <div class="form-group mb-3">
+                        <div *ngIf="!switchtoForgotPassword">
+                        <div *ngIf="mailPassword">
+                        <div class="form-group mb-3">
+                          <div *ngIf="!showPassword" class= "form-group has-feedback" >
+                            <input id="inputPassword" type="password" formControlName="password" (keydown)="errorMessage()" placeholder="password"
+                              required="" class="form-control rounded-pill border-0 shadow-sm px-8 text-primary" />
+                            <span (click)="toggleShowPassword()"  style="cursor: pointer; pointer-events: all;">
+                              <i class="fas fa-eye-slash" style="position: relative;
+                                    float: left;
+                                    left: 280px;
+                                    bottom: 25px;"></i>
+                            </span>
+                          </div>
+                        <div *ngIf="showPassword" class="form-group has-feedback">
+                            <input type="text" formControlName="password" id="inputPassword" required=""
+                              class="form-control rounded-pill border-0 shadow-sm px-8 text-primary" placeholder="
+                                      password" />
+                            <span (click)="toggleShowPassword()"style="cursor: pointer; pointer-events: all;">
+                              <i class="fas fa-eye" style="position: relative;
+                                    float: left;
+                                    left: 280px;
+                                    bottom: 25px;"></i>
+                            </span>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                          <div class="form-group">
+                            <div *ngIf="!switchtoForgotPassword">
+                              <button type="button" style="position:relative"[disabled]="!email.valid"
+                                class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"
+                                (keydown)="errorMessages()" *ngIf="!swithtoRegister" (click)="otpTrigger()"
+                       (click)="startTimer()">
+                                sign in
+                           <span class="buttonloader" *ngIf="callingApi"></span>
+                              </button>
+                              <button type="button"
+                                class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"
+            [disabled]="!email.valid" *ngIf="swithtoRegister" (click)="otpPhoneRegister()"
+                       (click)="startTimer()">
+                                sign up
+                                <span class="buttonloader" *ngIf="callingApi"></span>
+                              </button>
+                              <div *ngIf="mailPassword">
+                       <div class="help-block text-right" *ngIf="!swithtoRegister">
+                         <a (click)="loginorRegisterTitle('forgotpass')">
+                           forgotpassword</a>
+                       </div>
+                              </div>
+                           </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                </div>
+
+
+                <form class="form" role="form" method="post" accept-charset="UTF-8" id="forgot-nav" noValidate
+                [formGroup]="forgotPasswordForm">
+                <div *ngIf="switchtoForgotPassword" [ngClass]="{
+                    'has-danger':
+                      emailPassword.invalid &&
+                      (emailPassword.dirty || emailPassword.touched),
+                    'has-success':
+                      emailPassword.valid &&
+                      (emailPassword.dirty || emailPassword.touched)
+                  }">
+                  <div *ngIf="!NewPassword">
+                    <input type="text" class="form-control" placeholder="E-mail address"
+                      formControlName="emailPassword" required (keydown)="errorMessages()" /><br />
+                    <div class="form-control-feedback" *ngIf="
+                        emailPassword.errors &&
+                        (emailPassword.dirty || emailPassword.touched)
+                      ">
+                      <p *ngIf="emailPassword.errors.pattern">
+                        Invalid Email
+                      </p>
+                    </div>
+                    <button type="submit" style="position:relative" class="btn btn-primary btn-block"
+                      (click)="forgotPassword()">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <form class="form" role="form" method="post" accept-charset="UTF-8" autocomplete="off" id="otp-nav"
+              noValidate [formGroup]="signForm">
+              <div *ngIf="passwordOtp">
+                We have send 6 digit code to 
+                <span style="color: #0378ff;
+                ">
+                {{loginForm.value.email}}
+                </span>
+                <div class="password-field show-password" style=" padding: 30px 15px 0;">
+                  <input type="text" class="form-control" #clearInput formControlName="otp" value="Clear"
+                    (keydown)="errorMessage()" placeholder="Enter OTP" required /><br />
+
+                  <div *ngIf="timer">
+                    <div style="    padding: 30px 15px 0;">
+                      <span id="spnResendOtp"> Didn't receive OTP?
+                        <a style="color: #0378ff;
+                    " (click)="otpTrigger()" (click)="clearSearchInput()" (click)="startTimer()">
+                        Resend OTP"</a></span>
+                    </div>
+                  </div>
+                  <div *ngIf="settimer">
+                    <p id="time" class="text-primary">
+                      Resend OTP in 00:{{ timeLeft }}
+                    </p>
+                  </div>
+                  <br />
+
+                  <button type="submit" style="position:relative" class="btn btn-primary btn-block"
+                    (click)="authenticateOtp()">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+            
+            <form>
+              <div *ngIf="NewPassword">
+                <div *ngIf="!passwordOtp">
+                 A password reset link has been sent to your email address"
+                  <button type="button" style="position:relative" class="btn btn-primary btn-block"
+                    (click)="close()">
+                    OK
+                  </button>
+                </div>
+              </div>
+            </form>
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

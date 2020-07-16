@@ -1,0 +1,107 @@
+<mp-header></mp-header>
+<div class="jumbotron jumbotron-fluid position-relative">
+  <div class="hero-overlay"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
+        <div class="card p-2 mx-5">
+          <picture class="m-3 cardoverlay">
+            <img
+              class="card-img-top roundedImg"
+              src="{{ showService.booking.posterUrl }}"
+              alt="Card image"
+            />
+          </picture>
+          <div class="card-body cardbodycnt pt-1 pr-3 pl-3 pb-1 mr-3 ml-3 mb-3">
+            <div class="card-title position-relative">
+              <div class="text-white">{{ showService.booking.venueName }}</div>
+              <div class="ratingcnt"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col offset-3 mr-5 detailscnt"
+        id="main"
+        style="background: rgba(0, 0, 0, 0.25);"
+      >
+        <h1>{{ showService.booking.movieName }}</h1>
+        <div class="row">
+          <div class="col-6">
+            <h6>Description</h6>
+            <h6>
+              A veteran solider is sent to collect remains from earth. What he
+              finds in earth and how he discovers his past. is all his friends
+              really true to him and did he succeed in the mission is the
+              remaining part of the story
+            </h6>
+          </div>
+          <div class="col-6">
+            Rating here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mr-5">
+  <div class="col-3"></div>
+  <div class="col">
+    <ng-container
+      *ngIf="showTimeService.venueShowDates | async as venueShowDates"
+    >
+      <div class="row p-3 ml-3">
+        <div
+          class="text-center p-3 mr-5 moviedate"
+          *ngFor="let show of venueShowDates; index as i"
+          (click)="getVenueShowTime(show.showDate)"
+        >
+          <div>{{ show.showDate | date: "dd" }}</div>
+          <div>{{ show.day }}</div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showTimeService.movies | async as movies">
+      <div class="col flex-md-nowrap mt-5">
+        <div
+          class="d-flex flex-md-nowrap venuecnt mt-5 p-3"
+          *ngFor="let movie of movies"
+        >
+          <span
+            class="text-center p-3 mr-5 ml-3 d-flex font-weight-bold"
+            style="width: 25%;"
+            (click)="onSelectMovies(movie)"
+          >
+            {{ movie.movieName }}
+          </span>
+          <span
+            class="text-center p-1 mr-5 ml-3 flex-grow-1 d-flex flex-wrap"
+            *ngFor="let show of movie.shows"
+          >
+            <span
+              class="mx-2 p-3"
+              (click)="
+                confirmSeatSelectModal(
+                  selectSeatCount,
+                  movie.movieId,
+                  movie.movieName,
+                  movie.companyId,
+                  show.showPublishedId,
+                  show.screenId,
+                  show.showTime
+                )
+              "
+              >{{ show.showTime }}</span
+            >
+          </span>
+        </div>
+        <!-- </div> -->
+      </div>
+    </ng-container>
+  </div>
+</div>
+<ng-template #selectSeatCount>
+  <mp-seatcount></mp-seatcount>
+</ng-template>
+<mp-footer></mp-footer>

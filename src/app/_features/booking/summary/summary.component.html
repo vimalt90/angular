@@ -1,0 +1,286 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  x="0px"
+  y="0px"
+  width="38"
+  height="38"
+  viewBox="0 0 172 172"
+  style="fill: #000000; cursor: pointer; background-color: black;"
+>
+  <g
+    fill="none"
+    fill-rule="nonzero"
+    stroke="none"
+    stroke-width="1"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"
+    stroke-miterlimit="10"
+    stroke-dasharray=""
+    stroke-dashoffset="0"
+    font-family="none"
+    font-weight="none"
+    font-size="none"
+    text-anchor="none"
+    style="mix-blend-mode: normal;"
+  >
+    <path d="M0,172v-172h172v172z" fill="none"></path>
+    <g fill="#ffffff">
+      <path
+        d="M35.83333,57.33333l-28.66667,28.66667l28.66667,28.66667v-21.5h129v-14.33333h-129z"
+      ></path>
+    </g>
+  </g>
+</svg>
+
+<div class="row" style="justify-content: space-evenly; padding: 5%;">
+  <div
+    class="row"
+    style="display: flex; justify-content: space-evenly; flex: 1;"
+  >
+    <div class="flexboxes" style="flex: 0.7;">
+      <accordion [isAnimated]="false">
+        <accordion-group [isOpen]="isFirstOpen">
+          <button class="btn btn-link btn-block clearfix" accordion-heading>
+            <div class="pull-left float-left">
+              sharecontactdetails
+            </div>
+            <span class="badge badge-secondary float-right pull-right"> </span>
+          </button>
+          <form
+            class="textfield"
+            ngNoForm
+            name="data"
+            method="POST"
+            action="https://test.cashfree.com/billpay/checkout/post/submit"
+            name="data"
+            method="POST"
+            onsubmit="window.open('about:blank','_self','width=900,height=500');"
+            style="height: 200px;"
+          >
+            <div class="form">
+              <label>Product Name:</label>
+              <input
+                type="text"
+                name="orderNote"
+                class="form-control"
+                id="orderNote"
+                [(ngModel)]="order.orderNote"
+              />
+            </div>
+            <div class="form">
+              <label>Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="customerName"
+                id="customerName"
+                [(ngModel)]="order.customerEmail"
+              />
+            </div>
+            <div>
+              <div class="form-row">
+                <div class="col-sm">
+                  <label>E-mail:</label>
+                  <input
+                    type="email"
+                    name="customerEmail"
+                    class="form-control"
+                    id="customerEmail"
+                    [(ngModel)]="order.customerEmail"
+                    required
+                  />
+                </div>
+                <div class="col-sm">
+                  <label>Phone Number</label>
+                  <input
+                    type="text"
+                    digitOnly
+                    maxlength="10"
+                    name="customerPhone"
+                    class="form-control"
+                    id="customerPhone"
+                    [(ngModel)]="order.customerPhone"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form">
+              <label>Amount:</label>
+              <input
+                type="number"
+                step="any"
+                name="orderAmount"
+                class="form-control"
+                id="amount"
+                [(ngModel)]="order.orderAmount"
+              />
+            </div>
+            <textarea
+              rows="2"
+              cols="2"
+              name="orderId"
+              id="orderId"
+              ng-model="orderId"
+              [(ngModel)]="order.orderId"
+              hidden
+            ></textarea>
+            <textarea
+              rows="2"
+              cols="2"
+              name="returnUrl"
+              id="returnUrl"
+              ng-model="returnUrl"
+              [(ngModel)]="order.redirectUrl"
+              hidden
+            ></textarea>
+            <textarea
+              rows="2"
+              cols="2"
+              name="notifyUrl"
+              id="notifyUrl"
+              ng-model="notifyUrl"
+              [(ngModel)]="order.notifyUrl"
+              hidden
+            ></textarea>
+            <textarea
+              rows="2"
+              cols="2"
+              name="appId"
+              id="appId"
+              ng-model="appId"
+              [(ngModel)]="order.key"
+              hidden
+            ></textarea>
+            <textarea
+              rows="2"
+              cols="2"
+              name="orderCurrency"
+              id="orderCurrency"
+              ng-model="orderCurrency"
+              [(ngModel)]="order.customerCurrency"
+              hidden
+            ></textarea>
+            <textarea
+              rows="2"
+              cols="2"
+              name="signature"
+              id="signature"
+              ng-model="signature"
+              [(ngModel)]="order.hash"
+              hidden
+            ></textarea>
+           
+            <button type="submit" class="paymentbutton btn-default">
+              MakePayment
+            </button>
+            <!-- <div *ngIf="paymentService.payment| async as payment">
+                            <div *ngFor="let pay of payment">{{pay.redirectUrl}}</div>
+                        </div> -->
+          </form>
+          <form>
+            <div class="radio">
+              <div *ngIf="paymentService.paymentModes | async as paymentModes">
+                <div *ngFor="let payment of paymentModes">
+                  <input
+                    type="radio"
+                    name="payment"
+                    [value]="payment"
+                    (change)="makePayment(payment.id)"
+                  />{{ payment.modeName }}
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- <form>
+                        <div class="radio">
+                            <div *ngFor="let payment of paymentMode">
+                                <input type="radio" name="payment" [value]="payment"
+                                    (change)="radioChange(payment.modeName)">{{payment}}
+                            </div>
+                        </div>
+                    </form> -->
+          <!-- <form>
+                        <div class="radio">
+                            <label><input type="radio" name="optradio">Cash Free Payment Web</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="optradio">Wallet</label>
+                        </div>
+                    </form> -->
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+  <div
+    class="flexboxes"
+    style="
+      flex: 0.3;
+      box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+        0 30px 40px rgba(166, 173, 201, 0.2);
+      margin: 0px 50px;
+    "
+  >
+    <div *ngIf="paymentService.fareDeatils | async as fareDeatils">
+      <table>
+        <tr>
+          <th>Movie Name</th>
+          <td>
+            {{ showService.booking.movieName }}
+          </td>
+        </tr>
+        <tr>
+          <th>Venue Name</th>
+          <td>
+            {{ showService.booking.venueName }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Screen Name
+          </th>
+          <!-- <td>{{showService.booking.screenName}}</td> -->
+        </tr>
+        <tr>
+          <th>Language</th>
+          <td>{{ showService.booking.language }}</td>
+        </tr>
+        <tr>
+          <th>Total Number of Seats</th>
+          <td>{{ fareDeatils.total_seats_booked }}</td>
+        </tr>
+        <tr>
+          <th>Base Fare</th>
+          <td>{{ fareDeatils.fareResponseDetails.baseFare }}</td>
+        </tr>
+        <tr>
+          <th>Addtional Charge</th>
+          <td>{{fareDeatils.other_charges}}</td>
+        </tr>
+        <!-- <tr *ngFor="let tax of fareDeatils.fareResponseDetails.charges">
+            <span *ngFor="let take of tax.taxes">
+          <th>GST</th>
+          <span>{{take.taxAmount}} </span>
+        </span>
+        </tr> -->
+        <tr>
+          <th>Internet Handling Charge</th>
+
+          <td>{{fareDeatils.handling_charges}}</td>
+        </tr>
+        <tr>
+          <th>Total Amount</th>
+
+          <td>
+            {{ fareDeatils.fareResponseDetails.subTotal }}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>Location {{ showService.booking.city }}</div>
+    <div>Date{{ showService.booking.showDate }}</div>
+    <div>Time{{ showService.booking.showTime }}</div>
+  </div>
+
+ 
+</div>

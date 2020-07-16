@@ -1,0 +1,14 @@
+<p>confirmation works!</p>
+<div *ngIf="reservationservice.ticket | async as ticket">
+    <p>VenueName::::{{ticket.venueName}}</p>
+    <p>Movie Name::::{{ticket.movieName}}</p>
+    <p>Class Name:::{{ticket.className}}</p>
+    <p>Censor Certificate:::{{ticket.censorCertificate}}</p>
+    <p>Language::::{{ticket.language}}</p>
+    <p>Dimension::::{{ticket.dimension}}</p>
+    <img
+              class="card-img-top roundedImg"
+              src="{{ ticket.posterUrl }}"
+              alt="Card image"
+            />
+</div>

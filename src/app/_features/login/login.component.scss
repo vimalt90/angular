@@ -1,0 +1,105 @@
+.bg-transparent {
+  background-color: transparent;
+}
+
+:host {
+  height: 100%;
+}
+
+.photo {
+  object-fit: contain;
+}
+
+.card {
+  width: 20rem;
+  margin: 0 auto;
+}
+
+.margin15 {
+  margin: 15px;
+}
+
+.buttonloader {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 0;
+  left: 0;
+  line-height: 1.5;
+  height: 100%;
+  border-radius: 5px;
+  cursor: wait;
+  display: block;
+}
+
+.fas {
+  position: relative;
+  left: 209px;
+  bottom: 28px;
+}
+
+.space {
+  padding-left: 8px;
+}
+
+/////@at-root
+p {
+  font-family: Lato;
+}
+.error-message {
+  color: red;
+}
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.bg-image {
+  background-image: url("https://cache.desktopnexus.com/cropped-wallpapers/1998/1998762-1536x864-[DesktopNexus.com].jpg?st=JIi4TYcUjyTziypyO7jg3A&e=1573621028");
+  background-size: cover;
+  background-position: center center;
+  filter: brightness(0.5);
+}
+
+.modal-backdrop.show {
+  opacity: 1 !important;
+}
+
+@keyframes moveSlideshow {
+  0% {
+    //transform: translateX(15.6666%);
+    filter: opacity(0.1) grayscale(0.6);
+  }
+  50% {
+    filter: opacity(0.4) grayscale(0.9);
+  }
+  100% {
+    //transform: translateX(-15.6666%);
+    filter: opacity(0.1) grayscale(0.6);
+  }
+}
+//login close btn style
+.modalclose {
+  background: none;
+  border: none;
+  position: relative;
+  bottom: 152px;
+  left: 260px;
+}
+
+.modalclose > i {
+  font-size: 30px;
+  color: #ccc;
+}
+//login header change
+#headerchange {
+  position: relative;
+  bottom: 40px;
+  font-size: 25px;
+}
+
+.headerClose {
+  position: absolute;
+  right: 5px;
+  top: 1px;
+}
+

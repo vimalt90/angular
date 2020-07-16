@@ -1,0 +1,163 @@
+<!-- <ng-template #template> -->
+<!-- <div class="fullScreen">
+    <div class="modalScreen">
+        <h3 class="modal-title" *ngIf="movieTrailerService.movie | async as movie">
+            <div *ngFor="let movieTrailerModel of movie">
+                <div class="navigatePrevious">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="38" height="38" viewBox="0 0 172 172"
+                        style=" fill:#000000;cursor: pointer;" (click)="close()">
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g fill="#ffffff">
+                                <path
+                                    d="M35.83333,57.33333l-28.66667,28.66667l28.66667,28.66667v-21.5h129v-14.33333h-129z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                    {{ movieTrailerModel.movieName }}
+                    <div class="headerClose" (click)="close()">
+                        <i class="far fa-times-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="video" style="display: flex;
+        justify-content: center;
+        margin: 20px;"> -->
+<!-- <div [ngStyle]="{
+              'background-image': 'url(' + movieTrailerModel.posterUrl + ')'
+            }"></div> -->
+<!-- <iframe height="400" width="50%" [src]="movieTrailerUrl" style="border:none;">
+            </iframe> -->
+<!-- </div> -->
+
+<!-- <div> -->
+<!-- <tabset [justified]="true">
+                <tab heading="summary">
+                    <div class="synopsis">
+                        <div *ngFor="let movieTrailerModel of movie">
+                            <div>
+                                <h6>
+                                    <strong> synopsis
+                                    </strong>
+                                </h6>
+                                {{ movietrailermodel.synopsis }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="castcrewcontainer">
+                        <div class="child">
+                            <h6>
+                                <strong> cast</strong>
+                            </h6>
+                            <div *ngFor="let castModel of castModels" class="castandCrewDisplay">
+                                <div>
+                                    <img class="imageCastAndCrew" src="{{ castModel.imgURL }}" />
+                                </div>
+                                {{ castModel.cineastName }}
+                                <div>
+                                    <span *ngFor="let cineastName of castModel.cineastRoles">
+                                        {{ cineastName.cineastRoleName }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="child">
+                            <h6><strong>CREW</strong></h6>
+                            <div>
+                                <div *ngFor="let crewModel of crewModels" class="castandCrewDisplay">
+                                    <div>
+                                        <img class="imageCastAndCrew" src="{{ crewModel.imgURL }}" />
+                                    </div>
+                                    {{ crewModel.cineastName }}
+                                    <div>
+                                        <span *ngFor="let cineastName of crewModel.cineastRoles">
+                                            {{ cineastName.cineastRoleName }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prefferedMovies">
+                        preferred movies
+                    </div> -->
+<!-- <div class="row" style="margin:10px 25px 25px 0px;width:100%;">
+                        <carousel [itemsPerSlide]="4" [singleSlideOffset]="true" [interval]="false" [noWrap]="true"
+                            [startFromIndex]="1">
+                            <slide *ngFor="
+                      let slide of recommendedMoviesModels;
+                      let index = index
+                    ">
+                                <div class="card" style="width:250px;height:250px;margin:0px 50px;">
+                                    <img class="card-img-top animated  fadeIn delay-0.8s" src="{{ slide.posterUrl }}"
+                                        alt="Card image cap" (click)="navigateRecommendedMovie(slide, slide.movieId)" />
+                                    <div class="card-body" style="position: relative;">
+                                        <span class="card-text">{{ slide.movieName }}</span>
+                                        <span style="font-size: 12px">{{
+                          slide.censorCertificate
+                        }}</span>
+                                        <span style="font-size: 12px">
+                                            | {{ slide.language }}</span>
+                                    </div>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div> -->
+<!-- </tab> -->
+
+<!-- <tab heading="user review"> -->
+<!-- <div class="Review">
+                    <div>User Reviews</div>
+                    <div *ngFor="let userreview of userReviewModels">
+                        <div *ngIf="userreview.title != null">
+                            <div style="border-bottom: solid">
+                                <strong>
+                                    <h5>{{ userreview.userId }}:</h5>
+                                </strong>
+
+                                <span style="border-bottom:double">{{ userreview.title }}
+                                </span>
+                                <b class="space prefercinemacnt"><i class="fas fa-heart" style="
+                            color: #fd0e0e;
+                        "></i>{{ userreview.rating }}%</b>
+                                <div>{{ userreview.comments }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+<!-- </tab> -->
+<!-- <tab heading="critic review"> -->
+<!-- <div class="Review">
+                    <div>Critic Reviews</div>
+                    <div *ngFor="let criticreview of criticReviewModels">
+                        <div *ngIf="criticreview.title != null">
+                            <div style="border-bottom: solid">
+                                <strong>
+                                    <h5>{{ criticreview.criticName }}:</h5>
+                                </strong>
+                                <div>
+                                    <span style="border-bottom:double">{{ criticreview.title }}
+                                        <b class="space prefercinemacnt"><i class="fas fa-heart" style="
+                      color: #fd0e0e;
+                  "></i>{{ criticreview.rating }}%</b></span>
+                                </div>
+                                <div>{{ criticreview.comments }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+<!-- </tab> -->
+<!-- </tabset>
+        </div> -->
+<!-- </div>
+</div> -->
+<!-- </ng-template> -->

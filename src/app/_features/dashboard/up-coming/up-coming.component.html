@@ -1,0 +1,6 @@
+<mp-card
+  *ngIf="showService.upcoming | async as upcoming"
+  [cards]="upcoming.movies"
+  (movieSelect)="onMovieSelect($event)"
+>
+</mp-card>

@@ -1,0 +1,6 @@
+<p>view-locations works!</p>
+<ng-container *ngIf="locationservice.location | async as location">
+    <div *ngFor="let city of location">
+        {{city.name}}
+    </div>
+</ng-container>
