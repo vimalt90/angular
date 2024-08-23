@@ -1,146 +1,20 @@
+*Exploring the Hidden Gems of Sakleshpur: A Journey Through Nature and History.*
 
-Until Java 17, for plain old java objects (POJO), we needed to create a class with getters, setters, equals, hashcode and toString methods.
+Last month, I had the pleasure of embarking on a memorable trip to Sakleshpur, a serene hill station nestled in the Western Ghats. The journey was filled with breathtaking landscapes, rich history, and the warm hospitality of a coffee estate homestay. Here are some highlights from the trip:
+Magajahalli (Habbi) Waterfalls: Our adventure began with a visit to the stunning Magajahalli Waterfalls, where the cascading waters offered a refreshing start to the day. The natural beauty and the sound of the waterfalls were simply mesmerizing.
 
-To avoid this boilerplate code, we used Lombok to generate the getters and setters.
+Ride to Devaramane Hill Station: The ride to Devaramane was an exhilarating experience. The winding roads, lush greenery, and panoramic views of the Western Ghats made it a journey to remember.
 
-In Java 17, we don't need this Lombok plugin. These classes can be created using Record classes.
+Bettada Byraveshwara Temple: We took a spiritual detour to Bettada Byraveshwara Temple, an ancient temple nestled amidst the hills. The tranquility and the surrounding scenery provided a perfect setting for reflection and peace.
 
-A record class is nothing more than regular POJO, for which most of the code is generated from the definition
+Star-shaped Manjarabad Fort: A visit to the star-shaped Manjarabad Fort was like stepping back in time. The fort's unique design and the panoramic view from the top were highlights of this historical site.
 
+Estate Walk Through Coffee Plantations: Staying at a coffee estate homestay allowed us to take leisurely walks through lush coffee plantations. The aroma of coffee beans and the sight of green plantations were a treat for the senses.
 
+Seasonal Waterfalls: The monsoon season revealed hidden gems in the form of seasonal waterfalls. These spontaneous waterfalls, flowing through the dense forests, added an element of surprise and delight to our exploration.
 
-Java 8
-public class Person) {
-private final String name;
-Person(String name) {
-this.name name;
-public void setName( String name) {
-this.name = name;
-public String getName() {
-return name;
+Belur Temple: A visit to the Belur Temple introduced us to the intricate Hoysala architecture. The detailed carvings and sculptures were a testament to the artistry and craftsmanship of the bygone era.
 
-Java 17:
-public record Person (String name){}
+Hemavathi Backwaters and Floating Church: The serene Hemavathi Backwaters were a sight to behold. The floating church, partially submerged during the monsoons, added a unique and mystical charm to the landscape.
 
-
-Key Points:
-
-The above code written in Java 17 automatically generates getters, setters, equals, hashcode and toString methods.
-
-In the record class, an all-args constructor is created automatically for all the record components declared. We can also write our own all-args constructor.
-
-Record classes are final classes which cannot be extended or modified.
-
-We cannot define our own instance variables inside the record class.
-
-
-
-
-
-
-
-
-
-
-Creating a POJO (Plain Old Java Object) class is a fundamental task in Java, and the approach has remained relatively stable from Java 8 to Java 17. However, newer features introduced in Java 14 and above can simplify and enhance POJO creation. Here's a comparison of creating a POJO class in Java 8 and Java 17:
-
-### *Java 8*
-
-In Java 8, a POJO class typically includes private fields, public getter and setter methods, a no-argument constructor, and optionally, a constructor with arguments, and toString(), equals(), and hashCode() methods.
-
-java
-public class Person {
-    private String name;
-    private int age;
-
-    // No-argument constructor
-    public Person() {}
-
-    // Constructor with arguments
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    // Getter and setter methods
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    // toString method
-    @Override
-    public String toString() {
-        return "Person{name='" + name + "', age=" + age + '}';
-    }
-
-    // equals method
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name);
-    }
-
-    // hashCode method
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
-}
-
-
-### *Java 17*
-
-In Java 17, you can leverage the record feature introduced in Java 14 to create a concise, immutable POJO. Records automatically generate the constructor, getter methods, toString(), equals(), and hashCode() methods.
-
-java
-public record Person(String name, int age) {}
-
-
-The record declaration is a significant improvement for creating simple data carrier classes, reducing boilerplate code and ensuring immutability by default.
-
-### *Comparison*
-
-1. *Boilerplate Reduction*:
-   - *Java 8*: Requires manually writing constructors, getters, setters, toString(), equals(), and hashCode() methods.
-   - *Java 17*: Records automatically provide these methods, significantly reducing boilerplate code.
-
-2. *Immutability*:
-   - *Java 8*: Requires additional effort to make the class immutable (e.g., making fields final and omitting setters).
-   - *Java 17*: Records are immutable by default.
-
-3. *Syntax Simplicity*:
-   - *Java 8*: More verbose and prone to errors in method implementations.
-   - *Java 17*: More concise and less error-prone.
-
-### Example Usage
-
-*Java 8 POJO Usage*:
-java
-Person person = new Person("Alice", 30);
-person.setAge(31);
-System.out.println(person.getName() + " is " + person.getAge() + " years old.");
-
-
-*Java 17 Record Usage*:
-java
-Person person = new Person("Alice", 30);
-System.out.println(person.name() + " is " + person.age() + " years old.");
-
-
-While the fundamental approach to creating a POJO remains consistent, Java 17's records offer a more streamlined and modern way to define simple data structures.
-
-
+Sakleshpur offered a perfect blend of natural beauty, history, and culture, making it a destination worth exploring. This trip will remain etched in my memory as a journey of discovery and tranquility.
