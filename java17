@@ -1,146 +1,39 @@
+Chennai Day (Madras Day) celebrates the founding of the city, which falls on August 22. Here are some unique things you can do to prepare for Chennai Day:
 
-Until Java 17, for plain old java objects (POJO), we needed to create a class with getters, setters, equals, hashcode and toString methods.
+### 1. **Heritage Walks**
+   - Organize or participate in guided heritage walks through iconic neighborhoods like Mylapore, George Town, and Triplicane. These walks often highlight hidden histories, architecture, and cultural significance tied to Chennai’s past.
 
-To avoid this boilerplate code, we used Lombok to generate the getters and setters.
+### 2. **Traditional Kolam Designs**
+   - Arrange a Kolam competition with unique Chennai-themed designs. Participants can create intricate patterns that reflect the city’s culture, from iconic structures to local festivals.
 
-In Java 17, we don't need this Lombok plugin. These classes can be created using Record classes.
+### 3. **Chennai Cuisine Showcase**
+   - Host a food festival or community event featuring classic Chennai dishes. Highlight specialties like idli, sambar, filter coffee, and lesser-known regional delicacies like ‘Madras Karappu’ or Chettinad cuisine.
 
-A record class is nothing more than regular POJO, for which most of the code is generated from the definition
+### 4. **Art Exhibitions and Street Murals**
+   - Commission or create murals and street art representing historical events, cultural icons, and famous landmarks. Art exhibits could showcase works by local artists depicting Chennai’s essence.
 
+### 5. **Photo Contests**
+   - Organize a photography contest centered on Chennai’s spirit, capturing its people, daily life, iconic spots, and unique perspectives. Vintage photos of Madras can also be showcased.
 
+### 6. **Madras Music and Dance Performances**
+   - Hold a performance that combines Carnatic music, Bharatanatyam, and folk dance forms native to Tamil Nadu. Invite local artists to highlight the rich performing arts culture of Chennai.
 
-Java 8
-public class Person) {
-private final String name;
-Person(String name) {
-this.name name;
-public void setName( String name) {
-this.name = name;
-public String getName() {
-return name;
+### 7. **Madras Day Storytelling Sessions**
+   - Host storytelling events where older generations share their memories and anecdotes about how the city has evolved over time. These stories can provide a rich tapestry of history and personal experience.
 
-Java 17:
-public record Person (String name){}
+### 8. **Themed Runs or Cycling Events**
+   - Organize a “Madras Run” or a cycling tour that takes participants through iconic landmarks like Marina Beach, Fort St. George, and Kapaleeshwarar Temple. These events can be infused with trivia about the city’s history.
 
+### 9. **Street Food and Market Tours**
+   - Curate a tour through popular local markets like Koyambedu or Parry’s Corner, paired with a street food trail featuring classic Madras bites like sundal, bajji, and more.
 
-Key Points:
+### 10. **Vintage Film Screenings**
+   - Screen old Tamil movies or documentaries that showcase the city’s past. Films like “Madrasapattinam” or archival footage can evoke nostalgia and offer insights into the city’s heritage.
 
-The above code written in Java 17 automatically generates getters, setters, equals, hashcode and toString methods.
+### 11. **Local Handicrafts and Souvenir Stalls**
+   - Set up stalls selling handcrafted items, local arts, and souvenirs inspired by Chennai’s history and culture. Encourage local artisans to showcase their work related to the city.
 
-In the record class, an all-args constructor is created automatically for all the record components declared. We can also write our own all-args constructor.
+### 12. **Tree Planting Drives in Heritage Sites**
+   - Partner with environmental organizations for a tree-planting drive in historically significant areas. It’s a great way to honor the city's past while contributing to its future.
 
-Record classes are final classes which cannot be extended or modified.
-
-We cannot define our own instance variables inside the record class.
-
-
-
-
-
-
-
-
-
-
-Creating a POJO (Plain Old Java Object) class is a fundamental task in Java, and the approach has remained relatively stable from Java 8 to Java 17. However, newer features introduced in Java 14 and above can simplify and enhance POJO creation. Here's a comparison of creating a POJO class in Java 8 and Java 17:
-
-### *Java 8*
-
-In Java 8, a POJO class typically includes private fields, public getter and setter methods, a no-argument constructor, and optionally, a constructor with arguments, and toString(), equals(), and hashCode() methods.
-
-java
-public class Person {
-    private String name;
-    private int age;
-
-    // No-argument constructor
-    public Person() {}
-
-    // Constructor with arguments
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    // Getter and setter methods
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    // toString method
-    @Override
-    public String toString() {
-        return "Person{name='" + name + "', age=" + age + '}';
-    }
-
-    // equals method
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name);
-    }
-
-    // hashCode method
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
-}
-
-
-### *Java 17*
-
-In Java 17, you can leverage the record feature introduced in Java 14 to create a concise, immutable POJO. Records automatically generate the constructor, getter methods, toString(), equals(), and hashCode() methods.
-
-java
-public record Person(String name, int age) {}
-
-
-The record declaration is a significant improvement for creating simple data carrier classes, reducing boilerplate code and ensuring immutability by default.
-
-### *Comparison*
-
-1. *Boilerplate Reduction*:
-   - *Java 8*: Requires manually writing constructors, getters, setters, toString(), equals(), and hashCode() methods.
-   - *Java 17*: Records automatically provide these methods, significantly reducing boilerplate code.
-
-2. *Immutability*:
-   - *Java 8*: Requires additional effort to make the class immutable (e.g., making fields final and omitting setters).
-   - *Java 17*: Records are immutable by default.
-
-3. *Syntax Simplicity*:
-   - *Java 8*: More verbose and prone to errors in method implementations.
-   - *Java 17*: More concise and less error-prone.
-
-### Example Usage
-
-*Java 8 POJO Usage*:
-java
-Person person = new Person("Alice", 30);
-person.setAge(31);
-System.out.println(person.getName() + " is " + person.getAge() + " years old.");
-
-
-*Java 17 Record Usage*:
-java
-Person person = new Person("Alice", 30);
-System.out.println(person.name() + " is " + person.age() + " years old.");
-
-
-While the fundamental approach to creating a POJO remains consistent, Java 17's records offer a more streamlined and modern way to define simple data structures.
-
-
+These activities can bring out the spirit of Chennai while also offering a deeper connection to its heritage and traditions.
