@@ -213,3 +213,67 @@ Benefits
 	•	Automatic Cascade: With CascadeType.ALL, saving or deleting an order will automatically save or delete the related order items.
 	•	Referential Integrity: The foreign key order_id in OrderItem ensures each item belongs to a valid order.
 	•	Lazy Loading: By using fetch = FetchType.LAZY, the Order object only loads related items when needed, reducing unnecessary database calls.
+
+
+
+
+
+
+
+                +-------------+
+                |  Customers  |
+                |-------------|
+                | customer_id |<----------------+
+                | name        |                 |
+                | email       |                 |
+                | phone       |                 |
+                +-------------+                 |
+                      |                         |
+                      |                         |
+                      |  One-to-Many            |
+                      |                         |
+                      |                         |
+                +-------------+                 |
+                |   Orders    |                 |
+                |-------------|                 |
+                | order_id    |---------------->|
+                | customer_id |                 |
+                | order_date  |                 |
+                | status      |                 |
+                | total       |                 |
+                +-------------+                 |
+                      |                         |
+                      |                         |
+                      |  One-to-Many            |
+                      |                         |
+                      |                         |
+                +-------------+                 |
+                |  OrderItems |                 |
+                |-------------|                 |
+                | order_item_id                 |
+                | order_id    |                 |
+                | product_id  |---------------->|
+                | quantity    |                 |
+                | price       |                 |
+                +-------------+                 |
+                      |                         |
+                      |  Many-to-One            |
+                      |                         |
+                +-------------+                 |
+                |   Products  |                 |
+                |-------------|                 |
+                | product_id  |<---------------+
+                | name        |
+                | description |
+                | price       |
+                | stock       |
+                +-------------+
+
+                       Many-to-Many
+
+                +-------------+        +-------------+
+                |  Categories |        |ProductCategories|
+                |-------------|        |---------------|
+                | category_id |<------>| product_id     |
+                | name        |        | category_id    |
+                +-------------+        +---------------+
