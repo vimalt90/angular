@@ -39,3 +39,177 @@ Practical Use Case:
 	•	Consider an Order entity and an OrderItem entity where an order has multiple items. Using a One-to-Many relationship simplifies working with orders and their items. When you retrieve an order, you can easily get its items, modify them, or add new ones without dealing with direct database operations.
 
 In summary, one-to-many and many-to-one mappings in JPA help simplify data modeling, improve code maintainability, and reduce boilerplate while maintaining database consistency.
+
+
+
+Here’s an example of using one-to-many and many-to-one relationships in JPA. Let’s model an Order entity that can have multiple OrderItem entities. This example demonstrates how to set up the relationship and use it.
+
+1. Define the Order Entity (One-to-Many Relationship)
+
+The Order entity has a @OneToMany relationship with OrderItem. This means that each order can contain multiple items.
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String customerName;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> items = new ArrayList<>();
+
+    // Constructor, getters, and setters
+    public Order() {}
+
+    public Order(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void addItem(OrderItem item) {
+        items.add(item);
+        item.setOrder(this); // Set the relationship
+    }
+
+    public void removeItem(OrderItem item) {
+        items.remove(item);
+        item.setOrder(null); // Remove the relationship
+    }
+}
+
+2. Define the OrderItem Entity (Many-to-One Relationship)
+
+The OrderItem entity has a @ManyToOne relationship with Order. This means that each order item is associated with one order.
+
+import javax.persistence.*;
+
+@Entity
+public class OrderItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String productName;
+    private int quantity;
+    private double price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    // Constructor, getters, and setters
+    public OrderItem() {}
+
+    public OrderItem(String productName, int quantity, double price) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+}
+
+3. Using the Entities
+
+Here’s an example of how you might use these entities in code. This example demonstrates creating an order with multiple items and saving them using JPA.
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class OrderService {
+
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("example-unit");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        // Create an Order
+        Order order = new Order("John Doe");
+
+        // Create OrderItems
+        OrderItem item1 = new OrderItem("Laptop", 1, 1200.0);
+        OrderItem item2 = new OrderItem("Mouse", 2, 20.0);
+
+        // Add items to the order
+        order.addItem(item1);
+        order.addItem(item2);
+
+        // Persist the order (this will also persist the items due to CascadeType.ALL)
+        em.persist(order);
+
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+    }
+}
+
+Explanation of Key Parts
+
+	•	@OneToMany in Order: mappedBy = "order" specifies that the Order entity is not responsible for the relationship (avoiding duplication). cascade = CascadeType.ALL ensures that changes to the Order (such as creation or deletion) propagate to OrderItem.
+	•	@ManyToOne in OrderItem: @JoinColumn(name = "order_id") specifies the foreign key column in the OrderItem table, linking each item to its order.
+	•	Relationship Management: The addItem method in Order ensures that both sides of the relationship are kept in sync.
+
+Benefits
+
+	•	Automatic Cascade: With CascadeType.ALL, saving or deleting an order will automatically save or delete the related order items.
+	•	Referential Integrity: The foreign key order_id in OrderItem ensures each item belongs to a valid order.
+	•	Lazy Loading: By using fetch = FetchType.LAZY, the Order object only loads related items when needed, reducing unnecessary database calls.
