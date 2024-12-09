@@ -1,0 +1,49 @@
+package com.example;
+
+public class Envelope {
+    private Body Body;
+
+    // Getters and Setters
+    public Body getBody() {
+        return Body;
+    }
+
+    public void setBody(Body body) {
+        Body = body;
+    }
+
+    public static class Body {
+        private SubmitCaseResult SubmitCaseResult;
+
+        // Getters and Setters
+        public SubmitCaseResult getSubmitCaseResult() {
+            return SubmitCaseResult;
+        }
+
+        public void setSubmitCaseResult(SubmitCaseResult submitCaseResult) {
+            SubmitCaseResult = submitCaseResult;
+        }
+    }
+
+    public static class SubmitCaseResult {
+        private String GfsCaseId;
+        private String ErrorCode;
+
+        // Getters and Setters
+        public String getGfsCaseId() {
+            return GfsCaseId;
+        }
+
+        public void setGfsCaseId(String gfsCaseId) {
+            GfsCaseId = gfsCaseId;
+        }
+
+        public String getErrorCode() {
+            return ErrorCode;
+        }
+
+        public void setErrorCode(String errorCode) {
+            ErrorCode = errorCode;
+        }
+    }
+}
